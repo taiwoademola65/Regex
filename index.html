@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="email" name="" id="userInput" />
+    <span id="inputerror"></span>
+    <button onclick="checkVerify()">click me</button>
+    <div>
+      <input type="text" id="searchinput" />
+      <button onclick="searchBrand()">Search</button>
+    </div>
+  </body>
+  <script>
+    const firstNamePattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    const pcBrand = [
+      "Apple macbook",
+      "Dell probook",
+      "Iphoone",
+      "HP Notebook",
+      'Samsung pcbook'
+    ];
+
+
+    const searchBrand = () => {
+      const searchInput = document.getElementById("searchinput").value;
+      console.log(searchInput)
+      const searchReg = new RegExp(searchInput, "gi");
+
+      const match = pcBrand.filter((brand) => {
+        return searchReg.test(brand);
+      });
+      console.log(match);
+    };
+    document.getElementById("searchinput").addEventListener('input', searchBrand)
+
+    const checkVerify = () => {
+      // alert('i work')
+      const userInput = document.getElementById("userInput").value;
+
+      const inputError = document.getElementById("inputerror");
+
+      const verify = firstNamePattern.test(userInput);
+
+      if (verify) {
+        inputError.innerText = "correct input";
+      } else {
+        inputError.innerText = "incorrect input";
+      }
+
+      console.log(verify);
+    };
+  </script>
+</html>
